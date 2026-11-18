@@ -1,0 +1,45 @@
+{
+  "examples": [
+    {
+      "title": "Lecture 10-2: ACME / PSL migration",
+      "examples": [
+        {
+          "id": "acme-copy-only",
+          "title": "1a. Copy only",
+          "language": "flock",
+          "program": "01-copy-and-rename/copy-only.mig",
+          "flexmi": "01-copy-and-rename/acme.flexmi",
+          "emfatic": "01-copy-and-rename/original.emf",
+          "secondEmfatic": "01-copy-and-rename/evolved.emf"
+        },
+        {
+          "id": "acme-rename",
+          "title": "1b. Rename Task.title",
+          "language": "flock",
+          "program": "01-copy-and-rename/migrate.mig",
+          "flexmi": "01-copy-and-rename/acme.flexmi",
+          "emfatic": "01-copy-and-rename/original.emf",
+          "secondEmfatic": "01-copy-and-rename/evolved.emf"
+        },
+        {
+          "id": "acme-schedule",
+          "title": "2. Migrate to Activities",
+          "language": "flock",
+          "program": "02-evolve-schedule/migrate.mig",
+          "flexmi": "02-evolve-schedule/acme.flexmi",
+          "emfatic": "02-evolve-schedule/original.emf",
+          "secondEmfatic": "02-evolve-schedule/evolved.emf"
+        },
+        {
+          "id": "acme-cleanup",
+          "title": "3. Remove zero-percent Effort",
+          "language": "flock",
+          "program": "03-remove-placeholders/migrate.mig",
+          "flexmi": "03-remove-placeholders/acme.flexmi",
+          "emfatic": "03-remove-placeholders/original.emf",
+          "secondEmfatic": "03-remove-placeholders/evolved.emf"
+        }
+      ]
+    }
+  ]
+}

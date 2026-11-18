@@ -1,0 +1,12 @@
+delete Effort when: original.percentage = 0
+
+retype Task to Activity
+
+migrate Task {
+  migrated.name = original.title;
+  migrated.end = original.start + original.duration;
+}
+
+migrate Project {
+  migrated.activities = original.tasks.equivalent();
+}
