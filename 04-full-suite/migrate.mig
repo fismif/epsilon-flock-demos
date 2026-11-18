@@ -1,0 +1,48 @@
+pre announce {
+  ("Original tasks (including milestones): " +
+    Original!Task.all.size()).println();
+}
+
+// Earlier applicable mappings take precedence over the package move.
+@cascade
+delete DraftBundle when: original.obsolete
+
+@strict
+retype Task to Activity
+
+delete package psl when: original.isTypeOf(Original!ScratchMemo)
+// Fallback if scratch content is ever kept: preserve it as an Artifact.
+retype ScratchMemo to Artifact
+retype package psl to schedule
+
+// An ignored feature may be left at its evolved default.
+migrate Project ignoring status
+
+migrate Project {
+  migrated.activities = original.tasks.equivalent();
+}
+
+migrate Task when {
+  return original.duration >= 0;
+} {
+  migrated.name = original.title;
+  migrated.end = original.exclusiveEnd();
+  migrated.lead ::= original.owner;
+}
+
+operation Original!Task exclusiveEnd() : Integer {
+  return self.start + self.duration;
+}
+
+post report {
+  var project = Migrated!Project.all.first();
+  ("Status: " + project.status).println();
+  for (item in project.activities) {
+    (item.name + ": [" + item.start + ", " + item.end + ")" +
+      ", lead: " + item.lead.name).println();
+  }
+  ("Milestones: " + Migrated!Milestone.all.size()).println();
+  ("Draft notes: " + Migrated!DraftNote.all.size()).println();
+  ("Scratch memos: " + Migrated!ScratchMemo.all.size()).println();
+  ("Artifacts: " + project.artifacts.collect(a | a.name).concat(", ")).println();
+}

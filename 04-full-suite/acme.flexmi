@@ -1,0 +1,15 @@
+<?nsuri psl-full-original?>
+<project name="ACME" status="approved">
+  <person name="Alice"/>
+  <person name="Bob"/>
+  <task title="Analysis" start="1" duration="3" owner="Alice"/>
+  <milestone title="Sign-off" start="4" duration="0" owner="Bob"/>
+  <draftBundle obsolete="true">
+    <draftNote text="Discard this note with its obsolete draft"/>
+  </draftBundle>
+  <draftBundle obsolete="false">
+    <draftNote text="Keep this current draft note"/>
+  </draftBundle>
+  <scratchMemo name="Temporary import"/>
+  <artifact name="Published charter"/>
+</project>

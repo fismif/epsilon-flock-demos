@@ -1,0 +1,3 @@
+operation Original!Task exclusiveEnd() : Integer {
+  return self.start + self.duration;
+}

@@ -39,3 +39,43 @@ paste the files again; each folder is independent. No snapshot or live share is 
 
 If Playground is unavailable, the three demo slides include expected results.
 The four runs were also checked with the local Eclipse Epsilon 2.8.0 engine.
+
+## Bonus: Full Flock construct tour
+
+Use `04-full-suite` in the same four Playground panes, or choose **4. Full
+Flock construct tour** from the custom example menu once this revision is
+published. The Playground uses the self-contained `migrate.mig`;
+`helpers.eol` is only for the optional local import exercise.
+
+ACME is moving its schedule to a new package, while preserving milestones and
+owners and discarding temporary material. Watch the Console as well as the
+migrated model diagram.
+
+| Construct | What to look for |
+| --- | --- |
+| Named `pre` and `post` | The source count prints before migration; the result summary prints afterwards. |
+| `@strict retype` | The exact `Task` becomes `Activity`; `Milestone` keeps its own type. Remove `@strict` and the milestone count drops to zero. |
+| `retype package` | Same-named classes such as `Project` and `Milestone` move from `psl` to `schedule`. |
+| `@cascade delete` and `when:` | The obsolete draft and its note are omitted. The current draft and its note survive. Remove just `@cascade` and both notes get equivalents. |
+| `delete package` and mapping order | Within `psl`, the guard selects scratch memos for deletion before the fallback can convert its memo into an ordinary artifact. Comment out just the package deletion and the temporary import joins the published charter. |
+| `migrate ... ignoring` | The source status `approved` is not copied; the evolved default is `review`. |
+| `migrate` with a block guard and EOL operation | Tasks with nonnegative durations get an exclusive end. The rule also applies to the milestone subtype. |
+| `equivalent()` and `::=` | The first reconnects the collection of activities; the second reconnects each lead to a migrated person. |
+
+Expected console output:
+
+```text
+Original tasks (including milestones): 2
+Status: review
+Analysis: [1, 4), lead: Alice
+Sign-off: [4, 4), lead: Bob
+Milestones: 1
+Draft notes: 1
+Scratch memos: 0
+Artifacts: Published charter
+```
+
+**Optional file-based import:** In a local copy of `migrate.mig`, remove the
+inline `exclusiveEnd` operation and add `import "helpers.eol";` at the top.
+Run that file with the local Epsilon engine and keep `helpers.eol` beside it.
+The same migration result should be produced.

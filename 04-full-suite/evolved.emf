@@ -1,0 +1,31 @@
+@namespace(uri="psl-full-evolved", prefix="schedule")
+package schedule;
+
+class Project {
+  attr String name;
+  attr String status = "review";
+  val Activity[*] activities;
+  val Person[*] people;
+  val DraftBundle[*] drafts;
+  val Artifact[*] artifacts;
+}
+
+class Activity {
+  attr String name;
+  attr int start;
+  attr int end;
+  ref Person lead;
+}
+
+class Milestone extends Activity {}
+class Person { attr String name; }
+
+class DraftBundle {
+  attr boolean obsolete;
+  val DraftNote[*] notes;
+}
+
+class DraftNote { attr String text; }
+class Artifact { attr String name; }
+
+class ScratchMemo extends Artifact {}

@@ -38,6 +38,15 @@
           "flexmi": "03-remove-placeholders/acme.flexmi",
           "emfatic": "03-remove-placeholders/original.emf",
           "secondEmfatic": "03-remove-placeholders/evolved.emf"
+        },
+        {
+          "id": "acme-full-suite",
+          "title": "4. Full Flock construct tour",
+          "language": "flock",
+          "program": "04-full-suite/migrate.mig",
+          "flexmi": "04-full-suite/acme.flexmi",
+          "emfatic": "04-full-suite/original.emf",
+          "secondEmfatic": "04-full-suite/evolved.emf"
         }
       ]
     }
