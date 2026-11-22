@@ -47,6 +47,15 @@
           "flexmi": "04-full-suite/acme.flexmi",
           "emfatic": "04-full-suite/original.emf",
           "secondEmfatic": "04-full-suite/evolved.emf"
+        },
+        {
+          "id": "psl-split-task",
+          "title": "5. Split Task into Milestone / Activity (lecture example)",
+          "language": "flock",
+          "program": "10-2-flock-demo/psl2v2.mig",
+          "flexmi": "10-2-flock-demo/psl.flexmi",
+          "emfatic": "10-2-flock-demo/psl.emf",
+          "secondEmfatic": "10-2-flock-demo/psl-v2.emf"
         }
       ]
     }
