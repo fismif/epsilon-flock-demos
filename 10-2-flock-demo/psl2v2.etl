@@ -1,0 +1,34 @@
+rule Project2Project
+  transform o : Source!Project to m : Target!Project {
+  m.name = o.name;
+  m.description = o.description;
+  m.people ::= o.people;
+  m.tasks ::= o.tasks;
+}
+
+rule Person2Person
+  transform o : Source!Person to m : Target!Person {
+  m.name = o.name;
+}
+
+rule Task2Milestone
+  transform o : Source!Task to m : Target!Milestone {
+  guard : o.duration == 0
+  m.name = o.name;
+  m.start = o.start;
+}
+
+rule Task2Activity
+  transform o : Source!Task to m : Target!Activity {
+  guard : o.duration > 0
+  m.name = o.name;
+  m.start = o.start;
+  m.end = o.start + o.duration;
+  m.effort ::= o.effort;
+}
+
+rule Effort2Effort
+  transform o : Source!Effort to m : Target!Effort {
+  m.assignee ::= o.person;
+  m.percentage = o.percentage;
+}

@@ -1,0 +1,16 @@
+// Corrupt tasks (negative duration) are not migrated
+delete Task when: original.duration < 0
+
+// Task is now abstract: split it into its two subtypes
+retype Task to Milestone when: original.duration == 0
+retype Task to Activity  when: original.duration > 0
+
+// Activity stores an end instead of a duration
+migrate Task when: original.duration > 0 {
+	migrated.end = original.start + original.duration;
+}
+
+// Effort.person has been renamed to Effort.assignee
+migrate Effort {
+	migrated.assignee = original.person.equivalent();
+}
